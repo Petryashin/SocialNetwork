@@ -1,0 +1,3 @@
+const user = {
+    namespaced: true, 
+}
