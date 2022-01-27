@@ -16,7 +16,7 @@ class MessageFactory extends Factory
     {
         return [
             "text" =>$this->faker->text,
-            "user_id"=>$this->faker->numberBetween(1,5)
+            "user_id"=>$this->faker->numberBetween(1,20)
         ];
     }
     public function modelName(){

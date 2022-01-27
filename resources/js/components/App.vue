@@ -6,7 +6,9 @@
 
 <script>
 export default {
-  mounted() {},
+  mounted() {
+    this.$store.dispatch('messages/getMessages')
+  },
 };
 </script>
 <style scoped>
@@ -18,5 +20,10 @@ export default {
   top: 0;
   top: 60px;
   margin: 5px;
+}
+</style>
+<style>
+body{
+  background-color: rgb(5, 6, 8);
 }
 </style>

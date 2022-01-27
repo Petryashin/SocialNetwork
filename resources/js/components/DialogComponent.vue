@@ -18,25 +18,16 @@
 export default {
   data() {
     return {
-      messages: [
-        {
-          id: 1,
-          text: "Omnis quia libero et.",
-          user_id: 1,
-          created_at: "2022-01-26T23:35:58.000000Z",
-          updated_at: "2022-01-26T23:35:58.000000Z",
-        },
-        {
-          id: 2,
-          text: "Fugiat velit ad sint qui qui. ",
-          user_id: 2,
-          created_at: "2022-01-26T23:35:58.000000Z",
-          updated_at: "2022-01-26T23:35:58.000000Z",
-        },
-      ],
+     
     };
   },
   methods: {},
+  computed : {
+    messages () {
+      return this.$store.getters['messages/getMessages']
+    }
+
+  }
 };
 </script>
 
@@ -69,6 +60,7 @@ export default {
   padding: 3px;
   border-radius: 10px;
   margin: 5px;
+  margin-right: auto;
 }
 .my-message {
   text-align: justify;
