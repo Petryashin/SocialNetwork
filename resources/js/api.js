@@ -1,8 +1,5 @@
-const api ={
-    get : function (){
-        return {data: {}, success: true}
-    }
-}
+import axios from "axios";
+const api = axios.create();
 
 export default api
 

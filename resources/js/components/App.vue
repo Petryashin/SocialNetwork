@@ -1,13 +1,18 @@
 <template>
   <div class="root-container">
     <dialog-component />
+    <message-component />
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
+    setInterval(()=> this.$store.dispatch('messages/getMessages')
+    ,1000)
     this.$store.dispatch('messages/getMessages')
+    this.$store.dispatch('user/getUser')
+    
   },
 };
 </script>

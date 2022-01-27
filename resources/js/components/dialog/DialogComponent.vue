@@ -5,7 +5,7 @@
       :key="message.id"
       v-for="message in messages"
       class="message"
-      :class="message.user_id === 1 ? 'my-message' : ''"
+      :class="message.user_id === userId ? 'my-message' : ''"
     >
       <div class="message-content">
         {{ message.text }}
@@ -21,8 +21,13 @@ export default {
      
     };
   },
+  mounted(){
+  },
   methods: {},
   computed : {
+    userId() {
+        return this.$store.getters['user/getUserId'];
+    },
     messages () {
       return this.$store.getters['messages/getMessages']
     }
@@ -54,7 +59,7 @@ export default {
 }
 .message {
   text-align: justify;
-  background-color: blue;
+  background-color: rgb(97, 142, 226);
   min-width: 10%;
   max-width: 30%;
   padding: 3px;
