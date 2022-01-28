@@ -16,7 +16,6 @@ const messages = {
         getMessages ({commit}) {
             this.$api.get("/api/dialog/messages").then(response => {
                 commit("setMessages", response.data)
-                console.log("getMessages")
             })
         },
         sendMessage({commit,dispatch}, message) {

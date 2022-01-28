@@ -17,22 +17,18 @@
 <script>
 export default {
   data() {
-    return {
-     
-    };
+    return {};
   },
-  mounted(){
-  },
+  mounted() {},
   methods: {},
-  computed : {
+  computed: {
     userId() {
-        return this.$store.getters['user/getUserId'];
+      return this.$store.getters["user/getUserId"];
     },
-    messages () {
-      return this.$store.getters['messages/getMessages']
-    }
-
-  }
+    messages() {
+      return this.$store.getters["messages/getMessages"];
+    },
+  },
 };
 </script>
 
@@ -50,26 +46,27 @@ export default {
 .dialog {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
   border: 1px solid red;
   width: 100%;
-  height: 500px;
+  height: 700px;
   scroll-behavior: auto;
   overflow-y: scroll;
+  padding: 20px;
 }
 .message {
   text-align: justify;
-  background-color: rgb(97, 142, 226);
+  background-color: rgb(30 71 141 / 81%);
   min-width: 10%;
   max-width: 30%;
-  padding: 3px;
+  padding: 5px 10px;
   border-radius: 10px;
   margin: 5px;
   margin-right: auto;
 }
 .my-message {
   text-align: justify;
-  background-color: gray;
+  background-color: #5b4e4e;
   margin-right: 5px;
   margin-left: auto;
 }

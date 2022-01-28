@@ -5269,15 +5269,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    var _this = this;
-
-    setInterval(function () {
-      return _this.$store.dispatch('messages/getMessages');
-    }, 1000);
-    this.$store.dispatch('messages/getMessages');
-    this.$store.dispatch('user/getUser');
+    this.$store.dispatch("messages/getMessages");
+    this.$store.dispatch("user/getUser");
   }
 });
 
@@ -5318,10 +5315,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   computed: {
     userId: function userId() {
-      return this.$store.getters['user/getUserId'];
+      return this.$store.getters["user/getUserId"];
     },
     messages: function messages() {
-      return this.$store.getters['messages/getMessages'];
+      return this.$store.getters["messages/getMessages"];
     }
   }
 });
@@ -5346,8 +5343,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "window-message",
   mounted: function mounted() {},
@@ -5358,8 +5353,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMessage: function sendMessage() {
-      var userId = this.$store.getters['user/getUserId'];
-      this.$store.dispatch('messages/sendMessage', {
+      var userId = this.$store.getters["user/getUserId"];
+      this.$store.dispatch("messages/sendMessage", {
         text: this.textMessage,
         user_id: userId
       });
@@ -5538,7 +5533,6 @@ var messages = {
       var commit = _ref.commit;
       this.$api.get("/api/dialog/messages").then(function (response) {
         commit("setMessages", response.data);
-        console.log("getMessages");
       });
     },
     sendMessage: function sendMessage(_ref2, message) {
@@ -10639,7 +10633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.root-container[data-v-332fccf4] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  top: 60px;\r\n  margin: 5px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.root-container[data-v-332fccf4] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  /* top: 60px; */\r\n  /* margin: 30px; */\r\n  margin-right: 30px;\n}\n.app-container[data-v-332fccf4] {\r\n    position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 1%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10662,8 +10656,9 @@ __webpack_require__.r(__webpack_exports__);
 // Imports
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody{\r\n  background-color: rgb(5, 6, 8);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n  background-color: #08101e;\r\n  font-family: Montserrat;\r\n  font-size: 18px;\r\n  color: white;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10687,7 +10682,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  top: 60px;\r\n  margin: 5px;\n}\n.dialog {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 5px;\r\n  border: 1px solid red;\r\n  width: 100%;\r\n  height: 500px;\r\n  scroll-behavior: auto;\r\n  overflow-y: scroll;\n}\n.message {\r\n  text-align: justify;\r\n  background-color: rgb(97, 142, 226);\r\n  min-width: 10%;\r\n  max-width: 30%;\r\n  padding: 3px;\r\n  border-radius: 10px;\r\n  margin: 5px;\r\n  margin-right: auto;\n}\n.my-message {\r\n  text-align: justify;\r\n  background-color: gray;\r\n  margin-right: 5px;\r\n  margin-left: auto;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  top: 60px;\r\n  margin: 5px;\n}\n.dialog {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 7px;\r\n  border: 1px solid red;\r\n  width: 100%;\r\n  height: 700px;\r\n  scroll-behavior: auto;\r\n  overflow-y: scroll;\r\n  padding: 20px;\n}\n.message {\r\n  text-align: justify;\r\n  background-color: rgb(30 71 141 / 81%);\r\n  min-width: 10%;\r\n  max-width: 30%;\r\n  padding: 5px 10px;\r\n  border-radius: 10px;\r\n  margin: 5px;\r\n  margin-right: auto;\n}\n.my-message {\r\n  text-align: justify;\r\n  background-color: #5b4e4e;\r\n  margin-right: 5px;\r\n  margin-left: auto;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10711,7 +10706,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.window_message[data-v-1df848d2] {\r\n  width: 800px;\r\n  border: 1px solid blue;\r\n  height: 40px;\r\n  gap: 5px;\r\n  display: flex;\r\n  flex-direction: row;\n}\n.window_message .text_area[data-v-1df848d2] {\r\n  width: 100%;\r\n  height: 85%;\r\n  border: 1px solid blue;\n}\n.window_message .send[data-v-1df848d2] {\r\n  text-align: center;\n}\n.window_message .send[data-v-1df848d2]:hover {\r\n  background-color: gray;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.window_message[data-v-1df848d2] {\r\n  width: 100%;\r\n  /* border: 1px solid blue; */\r\n  height: 40px;\r\n  gap: 5px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  margin: 10px 0px;\n}\n.window_message .text_area[data-v-1df848d2] {\r\n  width: 100%;\r\n  height: 100%;\r\n  /* border: 1px solid blue; */\r\n  border-radius: 3px;\r\n  background-color: #39383dd9;\r\n  color: white;\n}\n.window_message .send[data-v-1df848d2] {\r\n  text-align: center;\r\n  width: 15%;\r\n  height: 100%;\r\n  border: 1px solid gray;\r\n  border-radius: 5px;\r\n  vertical-align: middle;\r\n  margin: auto;\r\n  padding-top: 5px;\r\n  background-color: #ff0000e3;\n}\n.window_message .send[data-v-1df848d2]:hover {\r\n  background-color: gray;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -50338,12 +50333,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "root-container" },
-    [_c("dialog-component"), _vm._v(" "), _c("message-component")],
-    1
-  )
+  return _c("div", { staticClass: "root-container" }, [
+    _c(
+      "div",
+      { staticClass: "app-container" },
+      [_c("dialog-component"), _vm._v(" "), _c("message-component")],
+      1
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
