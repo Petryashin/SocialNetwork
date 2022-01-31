@@ -23,7 +23,7 @@ class MessageCreatedBroadcasting implements ShouldBroadcast
     public function __construct(array $message)
     {
         $this->message = $message;
-        // $this->dontBroadcastToCurrentUser();
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -32,7 +32,7 @@ class MessageCreatedBroadcasting implements ShouldBroadcast
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
-    {
+    {   
         return new Channel("chat");
     }
 }

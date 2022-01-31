@@ -29,7 +29,7 @@ class MessageController extends Controller
         });
     }
     public function put(Request $request){
-        event(new MessageCreated($request->all()));
+        // event(new MessageCreated($request->all()));
         MessageCreatedBroadcasting::dispatch($request->all());
     }
 }
