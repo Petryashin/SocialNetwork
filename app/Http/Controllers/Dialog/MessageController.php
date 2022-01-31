@@ -7,6 +7,7 @@ use App\Models\Dialog\Message;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Events\Dialog\MessageCreated;
+use App\Events\Dialog\MessageCreatedBroadcasting;
 
 class MessageController extends Controller
 {
@@ -28,9 +29,7 @@ class MessageController extends Controller
         });
     }
     public function put(Request $request){
-        /** @var Message $message */
-        $message = Message::create($request->all());
         event(new MessageCreated($request->all()));
-        return $message;
+        MessageCreatedBroadcasting::dispatch($request->all());
     }
 }

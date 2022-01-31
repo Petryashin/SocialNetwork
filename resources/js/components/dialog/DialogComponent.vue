@@ -19,7 +19,11 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    window.Echo.channel('chat').listen('MessageCreatedBroadcasting',(data) =>{
+        console.log(data)
+    })
+  },
   methods: {},
   computed: {
     userId() {

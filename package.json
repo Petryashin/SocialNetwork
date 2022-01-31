@@ -24,7 +24,14 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "http": "^0.0.1-security",
+        "ioredis": "^4.28.3",
+        "laravel-echo": "^1.11.3",
+        "laravel-echo-server": "^1.6.3",
         "moment": "^2.29.1",
+        "pusher-js": "^7.0.4",
+        "socket.io": "^4.4.1",
+        "socket.io-client": "^4.4.1",
         "vuex": "^3.6.2"
     }
 }

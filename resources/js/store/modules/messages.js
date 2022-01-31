@@ -23,7 +23,7 @@ const messages = {
             this.$api.put("/api/dialog/messages", message).then(response => {
                 dispatch("getMessages")
                 console.log(response)})
-
+                this.message = ""
         }
     }
 }
