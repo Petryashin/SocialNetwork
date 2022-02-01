@@ -27,10 +27,12 @@ import Echo from 'laravel-echo';
 window.io = require('socket.io-client')
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    // namespace: 'App.Events',
+    // key: process.env.MIX_PUSHER_APP_KEY,
+    // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     // forceTLS: true
     // wsHost: window.location.hostname,
     // wsPort: 6001,
-    host :window.location.hostname + ':6001'
+    host : window.location.hostname + ':6001',
+    transports: ['websocket', 'polling', 'flashsocket'],
 });

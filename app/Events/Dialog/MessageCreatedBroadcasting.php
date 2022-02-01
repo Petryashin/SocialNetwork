@@ -23,9 +23,17 @@ class MessageCreatedBroadcasting implements ShouldBroadcast
     public function __construct(array $message)
     {
         $this->message = $message;
-        $this->dontBroadcastToCurrentUser();
+        // $this->dontBroadcastToCurrentUser();
     }
-
+    /**
+     * The event's broadcast name.
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'message.add';
+    }
     /**
      * Get the channels the event should broadcast on.
      *

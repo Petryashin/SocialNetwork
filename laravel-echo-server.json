@@ -4,10 +4,14 @@
 	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {"port":6379,"password": 1234}
+		"redis": {
+			"host": "0.0.0.0",
+			"port": 6379,
+			"password": 1234
+		},
+		"publishPresence": true
 	},
 	"devMode": true,
-	"host": null,
 	"port": "6001",
 	"protocol": "http",
 	"socketio": {},
@@ -22,8 +26,8 @@
 	},
 	"apiOriginAllow": {
 		"allowCors": false,
-		"allowOrigin": "",
-		"allowMethods": "",
-		"allowHeaders": ""
+		"allowOrigin": "*",
+		"allowMethods": "GET, POST",
+		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
 	}
 }

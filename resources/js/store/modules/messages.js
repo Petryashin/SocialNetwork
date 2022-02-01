@@ -21,7 +21,7 @@ const messages = {
         sendMessage({commit,dispatch}, message) {
             // commit("setNewMessage",message)
             this.$api.put("/api/dialog/messages", message).then(response => {
-                dispatch("getMessages")
+                // dispatch("getMessages")
                 console.log(response)})
                 this.message = ""
         }

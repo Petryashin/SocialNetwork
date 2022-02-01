@@ -16,17 +16,19 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $redis = new Client([
-            'scheme' => 'tcp',
-            'host'   => '127.0.0.1',
-            'port'   => 6379,
-        ],[
-            'parameters' => [
-                'password' => 1234
-                ]
-        ]);
-        $responses = $redis->pipeline()->set('test', json_encode(['bar'=>3232,4343=>323232]))->execute();
-        dump($redis->pipeline()->get('foo')->execute());
+        dd(config());
+        // MessageCreatedBroadcasting::dispatch(["text"=>"TestMessage","user_id"=>1]);
+        // $redis = new Client([
+        //     'scheme' => 'tcp',
+        //     'host'   => '127.0.0.1',
+        //     'port'   => 6379,
+        // ],[
+        //     'parameters' => [
+        //         'password' => 1234
+        //         ]
+        // ]);
+        // $responses = $redis->pipeline()->set('test', json_encode(['bar'=>3232,4343=>323232]))->execute();
+        // dump($redis->pipeline()->get('foo')->execute());
         // $redis = new Redis([
         //     'host' => '127.0.0.1',
         //     'port' => 6379,

@@ -20,9 +20,12 @@ export default {
     return {};
   },
   mounted() {
-    window.Echo.channel('chat').listen('MessageCreatedBroadcasting',(data) =>{
-        console.log(data)
-    })
+    console.log("mounted")
+    window.Echo.channel("chat").listen(".message.add", (data) => {
+      console.log("Hello");
+      alert("Hello");
+      console.log(data);
+    });
   },
   methods: {},
   computed: {
