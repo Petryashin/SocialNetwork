@@ -28,13 +28,14 @@ export default {
 </script>
 <style scoped>
 .window_message {
-  width: 100%;
+  width: 85%;
   /* border: 1px solid blue; */
   height: 40px;
   gap: 5px;
   display: flex;
   flex-direction: row;
   margin: 10px 0px;
+  margin:auto;
 }
 .window_message .text_area {
   width: 100%;

@@ -1,26 +1,20 @@
 <!-- Use preprocessors via the lang attribute! e.g. <template lang="pug"> -->
 <template>
   <div class="dialog">
-    <div
-      :key="message.id"
-      v-for="message in messages"
-      class="message"
-      :class="message.user_id === userId ? 'my-message' : ''"
-    >
-      <div class="message-content">
-        {{ message.text }}
-      </div>
+    <div :key="message.id" v-for="message in messages">
+      <MessageComponent :message="message" :userId="userId"></MessageComponent>
     </div>
   </div>
 </template>
 
 <script>
+import MessageComponent from "./MessageComponent";
 export default {
   data() {
     return {};
   },
   mounted() {
-    console.log("mounted")
+    console.log("mounted");
     window.Echo.channel("global_chat").listen(".message.add", (data) => {
       console.log(data);
       this.$store.commit("messages/setNewMessage", data.message);
@@ -34,6 +28,9 @@ export default {
     messages() {
       return this.$store.getters["messages/getMessages"];
     },
+  },
+  components: {
+    MessageComponent,
   },
 };
 </script>
@@ -54,26 +51,15 @@ export default {
   flex-direction: column;
   gap: 7px;
   border: 1px solid red;
-  width: 100%;
+  margin: auto;
+  width: 85%;
   height: 700px;
   scroll-behavior: auto;
   overflow-y: scroll;
   padding: 20px;
-}
-.message {
-  text-align: justify;
-  background-color: rgb(30 71 141 / 81%);
-  min-width: 10%;
-  max-width: 30%;
-  padding: 5px 10px;
-  border-radius: 10px;
-  margin: 5px;
-  margin-right: auto;
-}
-.my-message {
-  text-align: justify;
-  background-color: #5b4e4e;
-  margin-right: 5px;
-  margin-left: auto;
+  /* background-image: url(https://fototips.ru/wp-content/uploads/2011/12/landscape_02.jpg); */
+  background-image: url(./../../backgroundImages/NUrbIuIQtv8.jpg);
+  /* background-image: url(./../../backgroundImages/C2usGOXv1tw.jpg); */
+  background-size: 100%;
 }
 </style>
