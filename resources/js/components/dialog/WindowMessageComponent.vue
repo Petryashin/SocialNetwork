@@ -21,6 +21,7 @@ export default {
         text: this.textMessage,
         user_id: userId,
       });
+      this.textMessage = ""
     },
   },
 };

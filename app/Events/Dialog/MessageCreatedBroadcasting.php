@@ -23,7 +23,7 @@ class MessageCreatedBroadcasting implements ShouldBroadcast
     public function __construct(array $message)
     {
         $this->message = $message;
-        // $this->dontBroadcastToCurrentUser();
+        $this->dontBroadcastToCurrentUser();
     }
     /**
      * The event's broadcast name.
@@ -41,6 +41,6 @@ class MessageCreatedBroadcasting implements ShouldBroadcast
      */
     public function broadcastOn()
     {   
-        return new Channel("chat");
+        return new Channel("global_chat");
     }
 }

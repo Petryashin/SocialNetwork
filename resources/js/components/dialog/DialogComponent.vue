@@ -21,10 +21,9 @@ export default {
   },
   mounted() {
     console.log("mounted")
-    window.Echo.channel("chat").listen(".message.add", (data) => {
-      console.log("Hello");
-      alert("Hello");
+    window.Echo.channel("global_chat").listen(".message.add", (data) => {
       console.log(data);
+      this.$store.commit("messages/setNewMessage", data.message);
     });
   },
   methods: {},
