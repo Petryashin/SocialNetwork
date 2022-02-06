@@ -15,10 +15,10 @@ export default {
     message: "",
     userId: null,
   },
-  computed : {
-      itIsMe(){
-          return  this.message?.user_id === this.userId
-      }
+  computed: {
+    itIsMe() {
+      return this.message?.user_id === this.userId;
+    },
   },
 };
 </script>
@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .message {
   text-align: justify;
-  background-color: rgb(30 71 141);
+  background-color: rgb(52 54 56);
   opacity: 0.81;
   min-width: 10%;
   max-width: 30%;
@@ -34,16 +34,20 @@ export default {
   border-radius: 10px;
   margin: 5px;
   margin-right: auto;
+  box-shadow: 5px 8px 30px rgb(98 98 98 / 57%);
+  border: 1px solid rgb(74 74 74 / 50%);
+  word-wrap: break-word;
 }
 .my-message {
   text-align: justify;
-  background-color: #5b4e4e;
-  
+  background-color: rgb(30 71 141);
+  /* background-color: #5b4e4e; */
+
   margin-right: 5px;
   margin-left: auto;
 }
-.message-author{
-    font-size: 14px;
-    font-style: oblique;
+.message-author {
+  font-size: 14px;
+  font-style: oblique;
 }
 </style>

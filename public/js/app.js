@@ -5475,6 +5475,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMessage: function sendMessage() {
+      if (!this.textMessage) return;
       var userId = this.$store.getters["user/getUserId"];
       this.$store.dispatch("messages/sendMessage", {
         text: this.textMessage,
@@ -18919,7 +18920,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_backgroundImages_NUrbIuIQtv8_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  top: 60px;\r\n  margin: 5px;\n}\n.dialog {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 7px;\r\n  border: 1px solid red;\r\n  margin: auto;\r\n  width: 85%;\r\n  height: 700px;\r\n  scroll-behavior: auto;\r\n  overflow-y: scroll;\r\n  padding: 20px;\r\n  /* background-image: url(https://fototips.ru/wp-content/uploads/2011/12/landscape_02.jpg); */\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  /* background-image: url(./../../backgroundImages/C2usGOXv1tw.jpg); */\r\n  background-size: 100%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#app {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  top: 60px;\r\n  margin: 5px;\n}\n.dialog {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 7px;\r\n  border: 1px solid red;\r\n  margin: auto;\r\n  width: 85%;\r\n  height: 90%;\r\n  scroll-behavior: auto;\r\n  overflow-y: scroll;\r\n  padding: 20px;\r\n  /* background-image: url(https://fototips.ru/wp-content/uploads/2011/12/landscape_02.jpg); */\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  /* background-image: url(./../../backgroundImages/C2usGOXv1tw.jpg); */\r\n  background-size: 100%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -18943,7 +18944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-457c107c] {\r\n  text-align: justify;\r\n  background-color: rgb(30 71 141);\r\n  opacity: 0.81;\r\n  min-width: 10%;\r\n  max-width: 30%;\r\n  padding: 8px 12px;\r\n  border-radius: 10px;\r\n  margin: 5px;\r\n  margin-right: auto;\n}\n.my-message[data-v-457c107c] {\r\n  text-align: justify;\r\n  background-color: #5b4e4e;\r\n  \r\n  margin-right: 5px;\r\n  margin-left: auto;\n}\n.message-author[data-v-457c107c]{\r\n    font-size: 14px;\r\n    font-style: oblique;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-457c107c] {\r\n  text-align: justify;\r\n  background-color: rgb(52 54 56);\r\n  opacity: 0.81;\r\n  min-width: 10%;\r\n  max-width: 30%;\r\n  padding: 8px 12px;\r\n  border-radius: 10px;\r\n  margin: 5px;\r\n  margin-right: auto;\r\n  box-shadow: 5px 8px 30px rgb(98 98 98 / 57%);\r\n  border: 1px solid rgb(74 74 74 / 50%);\r\n  word-wrap: break-word;\n}\n.my-message[data-v-457c107c] {\r\n  text-align: justify;\r\n  background-color: rgb(30 71 141);\r\n  /* background-color: #5b4e4e; */\r\n\r\n  margin-right: 5px;\r\n  margin-left: auto;\n}\n.message-author[data-v-457c107c] {\r\n  font-size: 14px;\r\n  font-style: oblique;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -18967,7 +18968,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.window_message[data-v-1df848d2] {\r\n  width: 85%;\r\n  /* border: 1px solid blue; */\r\n  height: 40px;\r\n  gap: 5px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  margin: 10px 0px;\r\n  margin:auto;\n}\n.window_message .text_area[data-v-1df848d2] {\r\n  width: 100%;\r\n  height: 100%;\r\n  /* border: 1px solid blue; */\r\n  border-radius: 3px;\r\n  background-color: #39383dd9;\r\n  color: white;\n}\n.window_message .send[data-v-1df848d2] {\r\n  text-align: center;\r\n  width: 15%;\r\n  height: 100%;\r\n  border: 1px solid gray;\r\n  border-radius: 5px;\r\n  vertical-align: middle;\r\n  margin: auto;\r\n  padding-top: 5px;\r\n  background-color: #ff0000e3;\n}\n.window_message .send[data-v-1df848d2]:hover {\r\n  background-color: gray;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.window_message[data-v-1df848d2] {\r\n  width: 85%;\r\n  /* border: 1px solid blue; */\r\n  height: 5%;\r\n  gap: 5px;\r\n  display: flex;\r\n  flex-direction: row;\r\n  margin: 10px 0px;\r\n  margin:auto;\n}\n.window_message .text_area[data-v-1df848d2] {\r\n  width: 100%;\r\n  /* height: 100%; */\r\n  margin : auto;\r\n  /* border: 1px solid blue; */\r\n  border-radius: 3px;\r\n  background-color: #39383dd9;\r\n  color: white;\n}\n.window_message .send[data-v-1df848d2] {\r\n  text-align: center;\r\n  width: 15%;\r\n  /* height: 100%; */\r\n  border: 1px solid gray;\r\n  border-radius: 5px;\r\n  vertical-align: middle;\r\n  margin: auto;\r\n  background-color: #ff0000e3;\n}\n.window_message .send[data-v-1df848d2]:hover {\r\n  background-color: gray;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -62695,7 +62696,7 @@ var render = function () {
     }),
     _vm._v(" "),
     _c("div", { staticClass: "send", on: { click: _vm.sendMessage } }, [
-      _vm._v("Send"),
+      _vm._v("Отправить"),
     ]),
   ])
 }

@@ -27,7 +27,6 @@
         "http": "^0.0.1-security",
         "ioredis": "^4.28.3",
         "laravel-echo": "^1.11.3",
-        "laravel-echo-server": "^1.6.3",
         "moment": "^2.29.1",
         "pusher-js": "^7.0.4",
         "socket.io": "^4.4.1",

@@ -37,3 +37,14 @@ services:
 
     environment:
      - REDIS_REPLICATION_MODE=master
+  websockets:
+    container_name: websocket-server
+    restart: always
+    build:
+      context: ./websocket-server
+      dockerfile: dockerfile.echo      
+    # network_mode: "host"
+    ports:
+        - 6001:6001
+    volumes:
+    - ./websocket-server:/app

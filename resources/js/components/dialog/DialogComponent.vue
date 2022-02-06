@@ -53,7 +53,7 @@ export default {
   border: 1px solid red;
   margin: auto;
   width: 85%;
-  height: 700px;
+  height: 90%;
   scroll-behavior: auto;
   overflow-y: scroll;
   padding: 20px;
