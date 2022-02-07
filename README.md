@@ -1,5 +1,6 @@
 # SocialNetwork
-Мини проект - глобальный чат для всех авторизованных пользователей приложения
+Проект - социальная сеть        
+Текущая стадия - один общий глобальный чат для всех авторизованных пользователей
 
 
 ## Установка зависимостей и запуск контейнеров Docker
@@ -8,9 +9,14 @@ npm install
 composer install
 docker-compose up -d
 ```
-## DevMod
+## Локальная разработка
 ```bash
 npm run watch
 php artisan serve 
-npx laravel-echo-server start
+```
+## Развертывание на сервере с [конфигурацией](https://github.com/DoomerKitchen/BackendEnvironment)
+- Склонировать данный репозиторий в папку backend
+- .env.example -> .env 
+-```bash
+php artisan key:generate    
 ```
