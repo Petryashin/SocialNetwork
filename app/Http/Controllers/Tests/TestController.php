@@ -16,7 +16,8 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        dd(config());
+        dd(Auth::user()->id);
+        dump($request->session());
         // MessageCreatedBroadcasting::dispatch(["text"=>"TestMessage","user_id"=>1]);
         // $redis = new Client([
         //     'scheme' => 'tcp',

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Tests\TestController;
 use App\Http\Controllers\Dialog\UserController;
 use App\Http\Controllers\Dialog\MessageController;
 
@@ -19,8 +20,11 @@ use App\Http\Controllers\Dialog\MessageController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix'=>"/dialog/messages"],function ($routes){
-    Route::get('/', [MessageController::class , "get"]);
-    Route::put('/', [MessageController::class , "put"]);
+Route::get('test',TestController::class);
+Route::group([
+    // 'middleware' => 'auth',
+    'prefix' => "/dialog/messages"
+], function ($routes) {
+    Route::get('/', [MessageController::class, "get"]);
+    Route::put('/', [MessageController::class, "put"]);
 });
-
