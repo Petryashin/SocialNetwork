@@ -38,6 +38,7 @@ services:
     environment:
      - REDIS_REPLICATION_MODE=master
   websockets:
+    image: websockets
     container_name: websocket-server
     restart: always
     build:
