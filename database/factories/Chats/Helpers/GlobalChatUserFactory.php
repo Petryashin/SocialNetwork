@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Chats\Helpers;
 
+use App\Models\Chats\Helpers\GlobalChatUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GlobalChatUserFactory extends Factory
@@ -14,7 +15,11 @@ class GlobalChatUserFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "global_chat_id"=>$this->faker->unique()->numberBetween(1,10),
+            "user_id"=>$this->faker->numberBetween(1,4)
         ];
+    }
+    public function modelName(){
+        return GlobalChatUser::class;
     }
 }

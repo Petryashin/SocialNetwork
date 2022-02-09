@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Chats;
 
+use App\Models\Chats\PrivateChat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PrivateChatFactory extends Factory
@@ -14,7 +15,11 @@ class PrivateChatFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "user_one"=>$this->faker->numberBetween(1,4),
+            "user_two"=>$this->faker->unique()->numberBetween(1,10)
         ];
+    }
+    public function modelName(){
+        return PrivateChat::class;
     }
 }

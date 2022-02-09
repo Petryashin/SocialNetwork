@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Dialog\Message;
 use Illuminate\Support\Carbon;
+use App\Models\Chats\GlobalChat;
+use App\Models\Chats\PrivateChat;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
@@ -16,26 +18,8 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-        dump(User::find(1)->friends);
+
         // MessageCreatedBroadcasting::dispatch(["text"=>"TestMessage","user_id"=>1]);
-        // $redis = new Client([
-        //     'scheme' => 'tcp',
-        //     'host'   => '127.0.0.1',
-        //     'port'   => 6379,
-        // ],[
-        //     'parameters' => [
-        //         'password' => 1234
-        //         ]
-        // ]);
-        // $responses = $redis->pipeline()->set('test', json_encode(['bar'=>3232,4343=>323232]))->execute();
-        // dump($redis->pipeline()->get('foo')->execute());
-        // $redis = new Redis([
-        //     'host' => '127.0.0.1',
-        //     'port' => 6379,
-        //     'connectTimeout' => 2.5,
-        //     'auth' => ['phpredis', '1234'],
-        //     'ssl' => ['verify_peer' => false],
-        // ]);
         dd();
         MessageCreatedBroadcasting::dispatch(["text" => 'Test!!!!!!!!', "user_id" => 1]);
         // dd();
@@ -54,6 +38,10 @@ class TestController extends Controller
                 dump($model->messages()->where('created_at', "<", Carbon::now())->get());
                 $model = Message::find(2);
                 dump($model->user);
+            case 3:
+                // dump(PrivateChat::find(1)->messages()->limit(10)->first()->chat()->toSql());
+                // dump(PrivateChat::find(1)->messages()->limit(10)->first()->chat);
+                // dump(User::find(1)->info->main);
         }
     }
 }

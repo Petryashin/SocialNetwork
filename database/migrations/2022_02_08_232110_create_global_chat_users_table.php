@@ -14,10 +14,11 @@ class CreateGlobalChatUsersTable extends Migration
     public function up()
     {
         Schema::create('global_chat_user', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->foreignId('global_chat_id')->references('id')->on("global_chats")->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on("users")->onDelete('cascade');
             $table->timestamps();
+            $table->primary(['global_chat_id', 'user_id']);
         });
     }
 

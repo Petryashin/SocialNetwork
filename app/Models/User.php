@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\UserInfo;
 use App\Models\Dialog\Message;
+use App\Models\Chats\GlobalChat;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -47,13 +49,36 @@ class User extends Authenticatable
     /**
      * Получение всех сообщений данног опользователя
      */
-    public function messages(){
+    public function messages() : \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(Message::class);
     }
     /**
      * Получение всех друзей пользователя (через таблицу friends)
      */
-    public function friends(){
-        return $this->belongsToMany(User::class,"friends","user_one","user_two",'id','id');
+    public function friends() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class,"friends","user_one","user_two");
+    }
+    /**
+     * Список всех чатов, в которых состоит пользователь
+     */
+    public function globalChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(GlobalChat::class);
+    }
+    /**
+     * Список приватных чатов с другими пользователями
+     */
+    public function privateChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class,"private_chats","user_one","user_two");
+    }
+    /**
+     * Подробная информация о пользователе
+     */
+    public function info() : \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(UserInfo::class);
     }
 }

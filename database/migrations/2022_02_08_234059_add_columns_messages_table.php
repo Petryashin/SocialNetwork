@@ -28,6 +28,7 @@ class AddColumnsMessagesTable extends Migration
     {
         Schema::table('messages', function (Blueprint $table) {
             $table->dropColumn('chat_type');
+            $table->dropColumn('chat_id');
         });
     }
 }

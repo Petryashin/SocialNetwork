@@ -2,8 +2,9 @@
 
 namespace App\Models\Chats;
 
+use App\Models\Dialog\Message;
+use App\Models\Chats\EntityChat as Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class GlobalChat extends Model
 {
