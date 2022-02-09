@@ -14,7 +14,8 @@ class AddColumnsMessagesTable extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->text('chat_type')->after('user_id');
+            $table->unsignedBigInteger('chat_id')->after('user_id');
+            $table->text('chat_type')->after('chat_id');
         });
     }
 

@@ -44,8 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    /**
+     * Получение всех сообщений данног опользователя
+     */
     public function messages(){
         return $this->hasMany(Message::class);
+    }
+    /**
+     * Получение всех друзей пользователя (через таблицу friends)
+     */
+    public function friends(){
+        return $this->belongsToMany(User::class,"friends","user_one","user_two",'id','id');
     }
 }
