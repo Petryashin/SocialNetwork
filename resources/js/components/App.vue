@@ -27,7 +27,7 @@ export default {
   margin-right: 30px;
 }
 .app-container {
-    position: absolute;
+  position: absolute;
   width: 100%;
   height: 100%;
   padding: 1%;
@@ -40,5 +40,10 @@ body {
   font-family: Montserrat;
   font-size: 18px;
   color: white;
+  background: url(/example/image/aquaria.jpg) center / cover no-repeat;
+  filter: blur(5px); /* Размытие */
+}
+.card {
+  background-color: #00053d;
 }
 </style>

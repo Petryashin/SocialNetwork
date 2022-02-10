@@ -18865,7 +18865,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.root-container[data-v-332fccf4] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  /* top: 60px; */\r\n  /* margin: 30px; */\r\n  margin-right: 30px;\n}\n.app-container[data-v-332fccf4] {\r\n    position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 1%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.root-container[data-v-332fccf4] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  /* top: 60px; */\r\n  /* margin: 30px; */\r\n  margin-right: 30px;\n}\n.app-container[data-v-332fccf4] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 1%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -18890,7 +18890,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n  background-color: #08101e;\r\n  font-family: Montserrat;\r\n  font-size: 18px;\r\n  color: white;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n  background-color: #08101e;\r\n  font-family: Montserrat;\r\n  font-size: 18px;\r\n  color: white;\r\n  background: url(/example/image/aquaria.jpg) center / cover no-repeat;\r\n  filter: blur(5px); /* Размытие */\n}\n.card {\r\n  background-color: #00053d;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

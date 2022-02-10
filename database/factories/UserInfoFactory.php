@@ -15,7 +15,7 @@ class UserInfoFactory extends Factory
     public function definition()
     {
         return [
-            "user_id" =>$this->faker->unique()->numberBetween(1,10),
+            "user_id" =>$this->faker->unique()->numberBetween(1,11),
             "birthday"=>Carbon::parse($this->faker->dateTimeThisCentury->format('Y-m-d')),
             "education"=>$this->faker->company,
             "photo"=>""."jpg",
