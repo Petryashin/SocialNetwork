@@ -40,10 +40,12 @@ body {
   font-family: Montserrat;
   font-size: 18px;
   color: white;
-  background: url(/example/image/aquaria.jpg) center / cover no-repeat;
-  filter: blur(5px); /* Размытие */
+  background: url(./../backgroundImages/body.jpg) center / cover no-repeat;
+  background-size: 100%;
+  /* filter: blur(5px);  */
 }
 .card {
   background-color: #00053d;
+  opacity: 0.3;
 }
 </style>
