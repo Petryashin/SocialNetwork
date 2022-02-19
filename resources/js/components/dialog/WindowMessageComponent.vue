@@ -1,7 +1,9 @@
 <template>
   <div class="window_message">
     <textarea v-model="textMessage" class="text_area"></textarea>
-    <div @click="sendMessage" class="send">Отправить</div>
+    <div @click="sendMessage" class="send">
+      <div class="send_text">Отправить</div>
+    </div>
   </div>
 </template>
 
@@ -16,32 +18,32 @@ export default {
   },
   methods: {
     sendMessage() {
-      if (!this.textMessage) return
+      if (!this.textMessage) return;
       let userId = this.$store.getters["user/getUserId"];
       this.$store.dispatch("messages/sendMessage", {
         text: this.textMessage,
         user_id: userId,
       });
-      this.textMessage = ""
+      this.textMessage = "";
     },
   },
 };
 </script>
 <style scoped>
 .window_message {
-  width: 85%;
+  width: 100%;
   /* border: 1px solid blue; */
-  height: 5%;
+  height: 10%;
   gap: 5px;
   display: flex;
   flex-direction: row;
   margin: 10px 0px;
-  margin:auto;
+  margin: auto;
 }
 .window_message .text_area {
   width: 100%;
   /* height: 100%; */
-  margin : auto;
+  /* margin : auto; */
   /* border: 1px solid blue; */
   border-radius: 3px;
   background-color: #39383dd9;
@@ -54,8 +56,13 @@ export default {
   border: 1px solid gray;
   border-radius: 5px;
   vertical-align: middle;
-  margin: auto;
-  background-color: #ff0000e3;
+  /* margin: auto; */
+  background-color: #ff000029;
+}
+.send_text {
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
 }
 .window_message .send:hover {
   background-color: gray;

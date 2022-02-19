@@ -11,7 +11,7 @@ const user = {
     },
     actions: {
         getUser({ commit }) {
-            this.$api.get("/dialog/user").then((response) => {
+            this.$api.get("api/dialog/user").then((response) => {
                 commit("setUserid", response.data);
             });
         },

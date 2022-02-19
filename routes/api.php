@@ -22,9 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('test',TestController::class);
 Route::group([
-    // 'middleware' => 'auth',
+    'middleware' => 'auth',
     'prefix' => "/dialog/messages"
 ], function ($routes) {
     Route::get('/', [MessageController::class, "get"]);
     Route::put('/', [MessageController::class, "put"]);
 });
+Route::get('/dialog/user', [UserController::class , "get"])->middleware("auth");

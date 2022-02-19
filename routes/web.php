@@ -17,11 +17,13 @@ use App\Http\Controllers\Dialog\UserController;
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('dialog');
-})->middleware('auth');
 
 Route::get('/test', TestController::class);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dialog/user', [UserController::class , "get"]);
+Route::get('/{page}', function () {
+    return view('dialog');
+})
+->where("page", ".*")
+->middleware('auth');
+
+
