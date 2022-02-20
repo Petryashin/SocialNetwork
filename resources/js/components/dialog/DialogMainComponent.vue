@@ -1,16 +1,17 @@
 <template>
   <div class="root-dialog-container">
     <div class="app-dialog-container">
-      <dialog-component class="dialog_window" />
-      <window-message-component class="send_message_window" />
+      <dialog-component :chat_id="chat_id" class="dialog_window" />
+      <window-message-component :chat_id="chat_id" class="send_message_window" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props : ['chat_id'],
   mounted() {
-    this.$store.dispatch("messages/getMessages");
+    this.$store.dispatch("messages/getMessages", this.chat_id);
     this.$store.dispatch("user/getUser");
   },
 };

@@ -18,6 +18,7 @@ export default {
   data() {
     return {};
   },
+  props : ['chat_id'],
   mounted() {
     console.log("mounted");
     window.Echo.channel("global_chat").listen(".message.add", (data) => {

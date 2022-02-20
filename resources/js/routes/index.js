@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import DialogMainComponent from "./components/dialog/DialogMainComponent"
-import AboutMe from "./components/me/AboutMe.vue"
+import DialogMainComponent from "./../components/dialog/DialogMainComponent"
+import ChatSection from  "./../components/basis/sections/ChatSection"
+import AboutMe from "./../components/me/AboutMe.vue"
 
 
 Vue.use(VueRouter);
@@ -16,7 +17,7 @@ export default new VueRouter({
         },
         {
             path: "/dialog",
-            component: DialogMainComponent
+            component: ChatSection
         }
     ]
 });

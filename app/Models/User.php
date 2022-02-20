@@ -47,7 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     /**
-     * Получение всех сообщений данног опользователя
+     * Получение всех сообщений данного пользователя
      */
     public function messages() : \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -60,17 +60,18 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class,"friends","user_one","user_two");
     }
+
     /**
-     * Список всех чатов, в которых состоит пользователь
+     * Список всех глобальных чатов, в которых состоит пользователь
      */
     public function globalChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(GlobalChat::class);
     }
     /**
-     * Список приватных чатов с другими пользователями
+     * Список всех пользователей, с которыми User состоит в приватных чатах
      */
-    public function privateChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function privateChatsUsers() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class,"private_chats","user_one","user_two");
     }

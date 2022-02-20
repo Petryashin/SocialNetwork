@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Chat\ChatsController;
 use App\Http\Controllers\Tests\TestController;
 use App\Http\Controllers\Dialog\UserController;
 use App\Http\Controllers\Dialog\MessageController;
@@ -29,3 +30,9 @@ Route::group([
     Route::put('/', [MessageController::class, "put"]);
 });
 Route::get('/dialog/user', [UserController::class , "get"])->middleware("auth");
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => "/chats"
+], function ($routes) {
+    Route::get('/', [ChatsController::class, "get"]);
+});
