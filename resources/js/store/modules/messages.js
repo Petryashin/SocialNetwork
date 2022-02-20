@@ -13,10 +13,13 @@ const messages = {
         setMessages: (state, data) => Vue.set(state.messages, state.chat_id, data),
         // setNewMessage: (state, message) => state.messages.push(message)
         setNewMessage: (state, message) => {
+            let len = Object.keys(state.messages[message.chat_id]).length
             let item = {
-                ...state.messages[message.chat_id],
-                message
+                ...state.messages[message.chat_id]
             };
+            item[len] = message
+            // console.log("item");
+            // console.log(item);
             Vue.set(state.messages, message.chat_id, item);
         },
     },

@@ -5928,9 +5928,12 @@ var messages = {
     },
     // setNewMessage: (state, message) => state.messages.push(message)
     setNewMessage: function setNewMessage(state, message) {
-      var item = _objectSpread(_objectSpread({}, state.messages[message.chat_id]), {}, {
-        message: message
-      });
+      var len = Object.keys(state.messages[message.chat_id]).length;
+
+      var item = _objectSpread({}, state.messages[message.chat_id]);
+
+      item[len] = message; // console.log("item");
+      // console.log(item);
 
       Vue.set(state.messages, message.chat_id, item);
     }
