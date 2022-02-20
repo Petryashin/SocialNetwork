@@ -12,7 +12,6 @@
 import DialogMainComponent from "./dialog/DialogMainComponent.vue"
 export default {
   mounted() {
-    this.$store.dispatch("messages/getMessages");
     this.$store.dispatch("user/getUser");
   },
   components : {

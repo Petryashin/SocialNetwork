@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="content_this_chat">
-          <DialogMainComponent v-show="chat_id" :chat_id="chat_id" />
+          <DialogMainComponent :key="chat_id" v-if="chat_id" :chat_id="chat_id" />
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@ export default {
   methods: {
       chooseDialog(chat){
           this.chat_id =  chat.id
+          this.$store.commit("messages/setChatId",chat.id)
       }
   },
   components : {

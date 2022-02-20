@@ -5353,7 +5353,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    this.$store.dispatch("messages/getMessages");
     this.$store.dispatch("user/getUser");
   },
   components: {
@@ -5464,6 +5463,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     chooseDialog: function chooseDialog(chat) {
       this.chat_id = chat.id;
+      this.$store.commit("messages/setChatId", chat.id);
     }
   },
   components: {
@@ -5505,16 +5505,7 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   props: ['chat_id'],
-  mounted: function mounted() {
-    var _this = this;
-
-    console.log("mounted");
-    window.Echo.channel("global_chat").listen(".message.add", function (data) {
-      console.log(data);
-
-      _this.$store.commit("messages/setNewMessage", data.message);
-    });
-  },
+  mounted: function mounted() {},
   methods: {},
   computed: {
     userId: function userId() {
@@ -5550,12 +5541,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['chat_id'],
   mounted: function mounted() {
+    var _this = this;
+
     this.$store.dispatch("messages/getMessages", this.chat_id);
     this.$store.dispatch("user/getUser");
+    console.log("mounted");
+    window.Echo.channel("global_chat").listen(".message.add", function (data) {
+      console.log(data);
+
+      _this.$store.commit("messages/setNewMessage", _this.chat_id, data.message);
+    });
   }
 });
 
@@ -5906,37 +5904,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var messages = {
   namespaced: true,
   state: {
-    messages: null
+    messages: {},
+    // выбранный ID чата
+    chat_id: null
   },
   mutations: {
-    setMessages: function setMessages(state, data) {
-      return state.messages = data;
+    setChatId: function setChatId(state, chat_id) {
+      return state.chat_id = chat_id;
     },
+    // setMessages: (state, data) => state.messages = data,
+    setMessages: function setMessages(state, data) {
+      return Vue.set(state.messages, state.chat_id, data);
+    },
+    // setNewMessage: (state, message) => state.messages.push(message)
     setNewMessage: function setNewMessage(state, message) {
-      return state.messages.push(message);
+      var item = _objectSpread(_objectSpread({}, state.messages[state.chat_id]), {}, {
+        message: message
+      });
+
+      Vue.set(state.messages, state.chat_id, item);
     }
   },
   getters: {
     getMessages: function getMessages(state) {
-      return state.messages;
+      return state.messages[state.chat_id];
     }
   },
   actions: {
-    getMessages: function getMessages(_ref) {
-      var commit = _ref.commit;
-      this.$api.get("/api/dialog/messages").then(function (response) {
+    getMessages: function getMessages(_ref, chat_id) {
+      var _getters$getMessages;
+
+      var commit = _ref.commit,
+          getters = _ref.getters;
+      if ((_getters$getMessages = getters.getMessages) !== null && _getters$getMessages !== void 0 && _getters$getMessages.hasOwnProperty(chat_id)) return;
+      this.$api.get("/api/dialog/messages/".concat(chat_id)).then(function (response) {
+        commit("setChatId", chat_id);
         commit("setMessages", response.data);
+        console.log("getMessages");
+        console.log(response.data);
       });
     },
     sendMessage: function sendMessage(_ref2, message) {
-      var commit = _ref2.commit,
-          dispatch = _ref2.dispatch;
-      commit("setNewMessage", message);
-      this.$api.put("/api/dialog/messages", message).then(function (response) {
+      var commit = _ref2.commit;
+      commit("setNewMessage", message); // console.log("setNewMessage")
+      // console.log(message)
+
+      this.$api.put("/api/dialog/messages/".concat(chat_id), message).then(function (response) {
         console.log(response);
       });
     }
@@ -63536,17 +63559,12 @@ var render = function () {
         "div",
         { staticClass: "content_this_chat" },
         [
-          _c("DialogMainComponent", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.chat_id,
-                expression: "chat_id",
-              },
-            ],
-            attrs: { chat_id: _vm.chat_id },
-          }),
+          _vm.chat_id
+            ? _c("DialogMainComponent", {
+                key: _vm.chat_id,
+                attrs: { chat_id: _vm.chat_id },
+              })
+            : _vm._e(),
         ],
         1
       ),

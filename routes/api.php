@@ -26,8 +26,8 @@ Route::group([
     'middleware' => 'auth',
     'prefix' => "/dialog/messages"
 ], function ($routes) {
-    Route::get('/', [MessageController::class, "get"]);
-    Route::put('/', [MessageController::class, "put"]);
+    Route::get('/{chat_id}', [MessageController::class, "get"])->where('chat_id', '[0-9]+');
+    Route::put('/{chat_id}', [MessageController::class, "put"])->where('chat_id', '[0-9]+');
 });
 Route::get('/dialog/user', [UserController::class , "get"])->middleware("auth");
 Route::group([

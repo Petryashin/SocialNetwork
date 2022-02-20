@@ -6,13 +6,17 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props : ['chat_id'],
   mounted() {
     this.$store.dispatch("messages/getMessages", this.chat_id);
     this.$store.dispatch("user/getUser");
+    console.log("mounted");
+    window.Echo.channel("global_chat").listen(".message.add", (data) => {
+      console.log(data);
+      this.$store.commit("messages/setNewMessage",this.chat_id, data.message);
+    });
   },
 };
 </script>
