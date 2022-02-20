@@ -14,14 +14,15 @@ const messages = {
         // setNewMessage: (state, message) => state.messages.push(message)
         setNewMessage: (state, message) => {
             let item = {
-                ...state.messages[state.chat_id],
+                ...state.messages[message.chat_id],
                 message
             };
-            Vue.set(state.messages, state.chat_id, item);
+            Vue.set(state.messages, message.chat_id, item);
         },
     },
     getters : {
-        getMessages: (state) => state.messages[state.chat_id]
+        getMessages: (state) => state.messages[state.chat_id],
+        getChatId: (state) => state.chat_id
     }, 
     actions : {
         getMessages ({commit,getters}, chat_id) {
@@ -33,10 +34,11 @@ const messages = {
                 console.log(response.data)
             })
         },
-        sendMessage({commit}, message) {
+        sendMessage({commit,getters}, message) {
             commit("setNewMessage",message)
             // console.log("setNewMessage")
             // console.log(message)
+            let chat_id = getters.getChatId
             this.$api.put(`/api/dialog/messages/${chat_id}`, message).then(response => {
                 console.log(response)})
         }

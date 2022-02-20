@@ -15,7 +15,7 @@ export default {
     console.log("mounted");
     window.Echo.channel("global_chat").listen(".message.add", (data) => {
       console.log(data);
-      this.$store.commit("messages/setNewMessage",this.chat_id, data.message);
+      this.$store.commit("messages/setNewMessage", data.message);
     });
   },
 };

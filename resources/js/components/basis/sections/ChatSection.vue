@@ -53,7 +53,7 @@ export default {
 .chats_content_splitter {
   display: flex;
   flex-direction: row;
-  border: 1px solid red;
+  border: 3px solid rgb(230, 230, 230, 0.3);
   height: 100%;
 }
 .content_list_pages_chats {
@@ -73,7 +73,7 @@ export default {
     opacity : 0.8;
 }
 .content_this_chat {
-  border: 3px solid yellow;
+  border: 3px solid rgb(230, 230, 230, 0.3);
   flex-basis: 77%;
 }
 </style>

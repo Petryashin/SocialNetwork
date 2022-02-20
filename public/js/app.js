@@ -5552,7 +5552,7 @@ __webpack_require__.r(__webpack_exports__);
     window.Echo.channel("global_chat").listen(".message.add", function (data) {
       console.log(data);
 
-      _this.$store.commit("messages/setNewMessage", _this.chat_id, data.message);
+      _this.$store.commit("messages/setNewMessage", data.message);
     });
   }
 });
@@ -5928,16 +5928,19 @@ var messages = {
     },
     // setNewMessage: (state, message) => state.messages.push(message)
     setNewMessage: function setNewMessage(state, message) {
-      var item = _objectSpread(_objectSpread({}, state.messages[state.chat_id]), {}, {
+      var item = _objectSpread(_objectSpread({}, state.messages[message.chat_id]), {}, {
         message: message
       });
 
-      Vue.set(state.messages, state.chat_id, item);
+      Vue.set(state.messages, message.chat_id, item);
     }
   },
   getters: {
     getMessages: function getMessages(state) {
       return state.messages[state.chat_id];
+    },
+    getChatId: function getChatId(state) {
+      return state.chat_id;
     }
   },
   actions: {
@@ -5955,10 +5958,12 @@ var messages = {
       });
     },
     sendMessage: function sendMessage(_ref2, message) {
-      var commit = _ref2.commit;
+      var commit = _ref2.commit,
+          getters = _ref2.getters;
       commit("setNewMessage", message); // console.log("setNewMessage")
       // console.log(message)
 
+      var chat_id = getters.getChatId;
       this.$api.put("/api/dialog/messages/".concat(chat_id), message).then(function (response) {
         console.log(response);
       });
@@ -19227,7 +19232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#root_chats_component[data-v-8f6659b0] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  border: 1px solid black;\r\n  font-size: 14px;\n}\n.chats_content_splitter[data-v-8f6659b0] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  border: 1px solid red;\r\n  height: 100%;\n}\n.content_list_pages_chats[data-v-8f6659b0] {\r\n  width: 23%;\r\n  /* border: 1px solid red; */\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 5px;\r\n  padding: 5px;\r\n  margin: 0px 5px;\r\n  cursor: pointer;\n}\n.content_chat_blick[data-v-8f6659b0]{\r\n    border-radius: 5px;\n}\n.content_chat_blick[data-v-8f6659b0]:hover{\r\n    opacity : 0.8;\n}\n.content_this_chat[data-v-8f6659b0] {\r\n  border: 3px solid yellow;\r\n  flex-basis: 77%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#root_chats_component[data-v-8f6659b0] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  border: 1px solid black;\r\n  font-size: 14px;\n}\n.chats_content_splitter[data-v-8f6659b0] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  border: 3px solid rgb(230, 230, 230, 0.3);\r\n  height: 100%;\n}\n.content_list_pages_chats[data-v-8f6659b0] {\r\n  width: 23%;\r\n  /* border: 1px solid red; */\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 5px;\r\n  padding: 5px;\r\n  margin: 0px 5px;\r\n  cursor: pointer;\n}\n.content_chat_blick[data-v-8f6659b0]{\r\n    border-radius: 5px;\n}\n.content_chat_blick[data-v-8f6659b0]:hover{\r\n    opacity : 0.8;\n}\n.content_this_chat[data-v-8f6659b0] {\r\n  border: 3px solid rgb(230, 230, 230, 0.3);\r\n  flex-basis: 77%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
