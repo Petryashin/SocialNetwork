@@ -20,7 +20,7 @@ class TestController extends Controller
     {
 
         // MessageCreatedBroadcasting::dispatch(["text"=>"TestMessage","user_id"=>1]);
-        dd();
+        return User::find(1);
         MessageCreatedBroadcasting::dispatch(["text" => 'Test!!!!!!!!', "user_id" => 1]);
         // dd();
         // dd(phpinfo());

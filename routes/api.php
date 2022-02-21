@@ -29,7 +29,17 @@ Route::group([
     Route::get('/{chat_id}', [MessageController::class, "get"])->where('chat_id', '[0-9]+');
     Route::put('/{chat_id}', [MessageController::class, "put"])->where('chat_id', '[0-9]+');
 });
-Route::get('/dialog/user', [UserController::class , "get"])->middleware("auth");
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => "/dialog/user"
+], function () {
+    Route::get('/{user_id}', [UserController::class, "getById"])->where('user_id', '[0-9]+');
+    Route::get('/', [UserController::class , "get"]);
+    
+});
+
+
+
 Route::group([
     'middleware' => 'auth',
     'prefix' => "/chats"
