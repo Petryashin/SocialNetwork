@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class UserInfo extends Model
 {
     use HasFactory;
+    
+    protected $hidden = ['user_id','created_at','updated_at'];
+    protected $primaryKey = 'user_id';
+    protected $guarded  = false;
     /**
      * Получить главную сущность
      */

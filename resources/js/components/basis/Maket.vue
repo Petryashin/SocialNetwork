@@ -49,7 +49,7 @@ export default {
   height: 85%;
 }
 .content_list_pages_ref {
-  width: 12%;
+  /* width: 12%; */
   border: 1px solid rgb(135, 135, 138 , 0.3);
 }
 .content_this_page {
