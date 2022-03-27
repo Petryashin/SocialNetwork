@@ -12,10 +12,16 @@ export default {
   mounted() {
     this.$store.dispatch("messages/getMessages", this.chat_id);
     this.$store.dispatch("user/getUser");
-    console.log("mounted");
     window.Echo.channel("global_chat").listen(".message.add", (data) => {
       console.log(data);
-      this.$store.commit("messages/setNewMessage", data.message);
+      this.$api.get(`/api/dialog/user/${data.message.user_id}`).then(
+        (res)=>{
+          let message = data.message
+          message.user = res.data
+          this.$store.commit("messages/setNewMessage", message);
+        }
+      )
+      
     });
   },
 };

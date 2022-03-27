@@ -16,6 +16,7 @@ class UserController extends Controller
         if (!$user) return null;
         return $user;
     }
+<<<<<<< HEAD
     public function getInfo(int $id)
     {
         /**@var User $user */
@@ -33,5 +34,9 @@ class UserController extends Controller
         $infos = $user->info;
         $infos->update($data);
         return response()->json(['success' => true, 'user_info' => $infos]);
+=======
+    public function getById(int $user_id){
+        return User::find($user_id);
+>>>>>>> 274d3c29c657281e544b5f8801e1c0aae12c5799
     }
 }
