@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import DialogMainComponent from "./../components/dialog/DialogMainComponent"
 import ChatSection from  "./../components/basis/sections/ChatSection"
 import AboutMe from "./../components/me/AboutMe.vue"
-
-
+import ImageDownload from "./../components/me/ImageDownload.vue"
+ 
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -13,6 +13,11 @@ export default new VueRouter({
         {
             path: "/me",
             component: AboutMe
+            
+        },
+        {
+            path: "/image",
+            component: ImageDownload
             
         },
         {

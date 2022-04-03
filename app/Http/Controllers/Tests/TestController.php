@@ -18,9 +18,11 @@ class TestController extends Controller
 {
     public function __invoke(Request $request)
     {
-
+        return $request->file('image')->store(
+            'images'
+        );
         // MessageCreatedBroadcasting::dispatch(["text"=>"TestMessage","user_id"=>1]);
-        dd();
+        return User::find(1);
         MessageCreatedBroadcasting::dispatch(["text" => 'Test!!!!!!!!', "user_id" => 1]);
         // dd();
         // dd(phpinfo());

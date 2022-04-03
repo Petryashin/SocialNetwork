@@ -1,7 +1,16 @@
 <template>
   <div class="root_about_me">
     <div class="hat_component">
-      <div class="main_image_component"></div>
+      <div class="main_image_component">
+        <div class="custom-file">
+          <img v-if="infos.photo" src="/api/user/photo/1" style="width:80%" >
+          <input
+            type="file"
+            id="customFile"
+            @change="fileInputChange($event)"
+          />
+        </div>
+      </div>
       <div class="main_info_component">
         <div style="margin: 8px" class="header_info">
           Личная информация: <span @click="editInfo">Редактировать</span>
@@ -9,16 +18,20 @@
         <table v-if="!edit">
           <tr v-for="(info, key) in infos" :key="key" class="string_info">
             <td>{{ key }}</td>
-            <td>{{ info ? info : ""}}</td>
+            <td>{{ info ? info : "" }}</td>
           </tr>
         </table>
         <table v-if="edit">
-        <tr v-for="(info, key) in infos" :key="`_${key}`" class="string_info">
-          <td>{{ key }}</td>
-          <td><input type="text" v-model="infos[key]" /></td>
-        </tr>
-        <input type="button" @click="saveChanges" value="Сохранить изменения" />
-      </table>
+          <tr v-for="(info, key) in infos" :key="`_${key}`" class="string_info">
+            <td>{{ key }}</td>
+            <td><input type="text" v-model="infos[key]" /></td>
+          </tr>
+          <input
+            type="button"
+            @click="saveChanges"
+            value="Сохранить изменения"
+          />
+        </table>
       </div>
     </div>
   </div>
@@ -45,12 +58,20 @@ export default {
       this.edit = true;
     },
     saveChanges() {
-      this.$api
-        .put("/api/user/info/1", this.infos)
-        .then((response) => {
-          console.log(response.data)
-          this.edit = false;
-        });
+      this.$api.put("/api/user/info/1", this.infos).then((response) => {
+        console.log(response.data);
+        this.edit = false;
+      });
+    },
+    fileInputChange(event) {
+      this.infos.photo = null
+      let file = event.target.files[0];
+      let form = new FormData();
+      form.append("image", file);
+      axios.post("/api/user/photo/1", form).then((response) => {
+        console.log(response);
+        this.infos.photo = response.data.filepath;
+      });
     },
   },
 };
@@ -64,7 +85,10 @@ export default {
   margin: 5px;
   min-width: 30%;
   min-height: 30%;
+  max-width: 30%;
   max-height: 40%;
+  display: flex;
+  flex-direction: column;
 }
 .main_info_component {
   display: flex;

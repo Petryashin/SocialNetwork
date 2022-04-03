@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Chat\ChatsController;
 use App\Http\Controllers\Tests\TestController;
 use App\Http\Controllers\Dialog\UserController;
+use App\Http\Controllers\Store\ImageController;
 use App\Http\Controllers\Dialog\MessageController;
 
 /*
@@ -21,7 +22,9 @@ use App\Http\Controllers\Dialog\MessageController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('test', TestController::class);
+//images/vedCciJrsc1TkqySKjJfVhr0JoiN6PSL7xdHNn4n.jpg
+Route::post('test', TestController::class);
+Route::get('test', [ImageController::class, 'get']);
 Route::group(
     [
         'middleware' => 'auth'
@@ -39,8 +42,15 @@ Route::group(
             Route::get('/', [UserController::class, "get"]);
             Route::get('/info/{id}', [UserController::class, "getInfo"]);
             Route::put('/info/{id}', [UserController::class, "setInfo"]);
+            Route::group([
+                'prefix' => "/photo"
+            ], function ($routes) {
+                Route::post('/{id}', [ImageController::class, "setImage"])->where('id', '[0-9]+');
+                Route::get('/{id}', [ImageController::class, "getImage"])->where('id', '[0-9]+');
+
+            });
         });
-        
+
         Route::group([
             'prefix' => "/chats"
         ], function ($routes) {
