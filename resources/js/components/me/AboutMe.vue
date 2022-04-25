@@ -16,13 +16,13 @@
           Личная информация: <span @click="editInfo">Редактировать</span>
         </div>
         <table v-if="!edit">
-          <tr v-for="(info, key) in infos" :key="key" class="string_info">
+          <tr v-if="checkKey(key)" v-for="(info, key) in infos" :key="key" class="string_info">
             <td>{{ key }}</td>
             <td>{{ info ? info : "" }}</td>
           </tr>
         </table>
         <table v-if="edit">
-          <tr v-for="(info, key) in infos" :key="`_${key}`" class="string_info">
+          <tr v-if="checkKey(key)" v-for="(info, key) in infos" :key="`_${key}`" class="string_info">
             <td>{{ key }}</td>
             <td><input type="text" v-model="infos[key]" /></td>
           </tr>
@@ -52,7 +52,9 @@ export default {
   },
 
   methods: {
-
+    checkKey(key) {
+      return key !== 'photo'
+    },
     getInfo() {
       setTimeout(
         () =>
