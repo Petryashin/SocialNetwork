@@ -5350,7 +5350,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _dialog_DialogMainComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dialog/DialogMainComponent.vue */ "./resources/js/components/dialog/DialogMainComponent.vue");
 //
 //
 //
@@ -5361,13 +5360,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.$store.dispatch("user/getUser");
-  },
-  components: {
-    DialogMainComponent: _dialog_DialogMainComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -5405,7 +5400,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _MainMenuList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainMenuList.vue */ "./resources/js/components/basis/MainMenuList.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _MainMenuList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainMenuList.vue */ "./resources/js/components/basis/MainMenuList.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -5423,8 +5426,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      isLoaded: false
+    };
+  },
+  beforeMount: function beforeMount() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var load;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch("user/getUser");
+
+            case 2:
+              load = _context.sent;
+              _this.isLoaded = load;
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
   components: {
-    MainMenuList: _MainMenuList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    MainMenuList: _MainMenuList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -5558,7 +5590,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$store.dispatch("messages/getMessages", this.chat_id);
-    this.$store.dispatch("user/getUser");
     window.Echo.channel("global_chat").listen(".message.add", function (data) {
       console.log(data);
 
@@ -5713,14 +5744,19 @@ __webpack_require__.r(__webpack_exports__);
       edit: false
     };
   },
+  created: function created() {},
   mounted: function mounted() {
     this.getInfo();
   },
   methods: {
+    checkKey: function checkKey(key) {
+      return key !== 'photo';
+    },
     getInfo: function getInfo() {
       var _this = this;
 
-      return this.$api.get("/api/user/info/1").then(function (response) {
+      var userId = this.$store.getters["user/getUserId"];
+      this.$api.get("/api/user/info/".concat(userId)).then(function (response) {
         return _this.infos = response.data.user;
       });
     },
@@ -6226,6 +6262,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 var user = {
   namespaced: true,
   state: {
@@ -6243,10 +6287,30 @@ var user = {
   },
   actions: {
     getUser: function getUser(_ref) {
-      var commit = _ref.commit;
-      this.$api.get("api/user").then(function (response) {
-        commit("setUserid", response.data);
-      });
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var commit, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                commit = _ref.commit;
+                _context.next = 3;
+                return _this.$api.get("api/user");
+
+              case 3:
+                response = _context.sent;
+                commit("setUserid", response.data);
+                return _context.abrupt("return", true);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 };
@@ -64639,7 +64703,14 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "content_this_page" }, [_c("router-view")], 1),
+      _vm.isLoaded
+        ? _c(
+            "div",
+            { staticClass: "content_this_page" },
+            [_c("router-view")],
+            1
+          )
+        : _vm._e(),
     ]),
   ])
 }
@@ -64960,11 +65031,13 @@ var render = function () {
           ? _c(
               "table",
               _vm._l(_vm.infos, function (info, key) {
-                return _c("tr", { key: key, staticClass: "string_info" }, [
-                  _c("td", [_vm._v(_vm._s(key))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(info ? info : ""))]),
-                ])
+                return _vm.checkKey(key)
+                  ? _c("tr", { key: key, staticClass: "string_info" }, [
+                      _c("td", [_vm._v(_vm._s(key))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(info ? info : ""))]),
+                    ])
+                  : _vm._e()
               }),
               0
             )
@@ -64975,36 +65048,34 @@ var render = function () {
               "table",
               [
                 _vm._l(_vm.infos, function (info, key) {
-                  return _c(
-                    "tr",
-                    { key: "_" + key, staticClass: "string_info" },
-                    [
-                      _c("td", [_vm._v(_vm._s(key))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.infos[key],
-                              expression: "infos[key]",
+                  return _vm.checkKey(key)
+                    ? _c("tr", { key: "_" + key, staticClass: "string_info" }, [
+                        _c("td", [_vm._v(_vm._s(key))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.infos[key],
+                                expression: "infos[key]",
+                              },
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.infos[key] },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.infos, key, $event.target.value)
+                              },
                             },
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.infos[key] },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.infos, key, $event.target.value)
-                            },
-                          },
-                        }),
-                      ]),
-                    ]
-                  )
+                          }),
+                        ]),
+                      ])
+                    : _vm._e()
                 }),
                 _vm._v(" "),
                 _c("input", {

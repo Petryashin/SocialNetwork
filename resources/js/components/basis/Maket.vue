@@ -7,7 +7,7 @@
       <div class="content_list_pages_ref">
         <MainMenuList />
       </div>
-      <div class="content_this_page">
+      <div v-if="isLoaded" class="content_this_page">
         <router-view></router-view>
       </div>
     </div>
@@ -16,6 +16,15 @@
 <script>
 import MainMenuList from "./MainMenuList.vue";
 export default {
+  data() {
+    return {
+      isLoaded : false
+    }
+  },
+  async beforeMount(){
+    let load = await this.$store.dispatch("user/getUser")
+    this.isLoaded = load
+  },
   components: {
     MainMenuList,
   },

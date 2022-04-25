@@ -11,7 +11,6 @@ export default {
   props : ['chat_id'],
   mounted() {
     this.$store.dispatch("messages/getMessages", this.chat_id);
-    this.$store.dispatch("user/getUser");
     window.Echo.channel("global_chat").listen(".message.add", (data) => {
       console.log(data);
       this.$api.get(`/api/dialog/user/${data.message.user_id}`).then(

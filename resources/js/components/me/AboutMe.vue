@@ -46,8 +46,7 @@ export default {
   },
   created() {
   },
- async mounted() {
-    await this.$store.dispatch("user/getUser");
+  mounted() {
     this.getInfo();
   },
 
