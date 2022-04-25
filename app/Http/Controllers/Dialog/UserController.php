@@ -21,6 +21,7 @@ class UserController extends Controller
         /**@var User $user */
         $user = User::find($id);
         if (!$user) return null;
+        if(!$user->info) $user->info()->create();
         return response()->json(['success' => true, 'user' => new UserInfoResource($user->info)]);
     }
     public function setInfo(int $id, Request $request)
