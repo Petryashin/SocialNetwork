@@ -3,7 +3,7 @@
     <div class="hat_component">
       <div class="main_image_component">
         <div class="custom-file">
-          <img v-if="infos.photo" src="/api/user/photo/1" style="width:80%" >
+          <img v-if="infos.photo" src="/api/user/photo/1" style="width: 80%" />
           <input
             type="file"
             id="customFile"
@@ -44,30 +44,46 @@ export default {
       edit: false,
     };
   },
+  created() {
+    this.$store.dispatch("user/getUser");
+  },
   mounted() {
     this.getInfo();
   },
 
   methods: {
+
     getInfo() {
-      return this.$api
-        .get("/api/user/info/1")
-        .then((response) => (this.infos = response.data.user));
+      setTimeout(
+        () =>
+          {let userId = this.$store.getters["user/getUserId"];
+          this.$api
+            .get(`/api/user/info/${userId}`)
+            .then((response) => (this.infos = response.data.user))
+            },
+        1000
+      );
     },
+
     editInfo() {
       this.edit = true;
     },
+
     saveChanges() {
       this.$api.put("/api/user/info/1", this.infos).then((response) => {
         console.log(response.data);
         this.edit = false;
       });
     },
+
     fileInputChange(event) {
-      this.infos.photo = null
+      this.infos.photo = null;
+
       let file = event.target.files[0];
       let form = new FormData();
+
       form.append("image", file);
+
       axios.post("/api/user/photo/1", form).then((response) => {
         console.log(response);
         this.infos.photo = response.data.filepath;
@@ -75,6 +91,7 @@ export default {
     },
   },
 };
+
 </script>
 <style scoped>
 .hat_component {
