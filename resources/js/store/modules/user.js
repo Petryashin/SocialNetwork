@@ -10,10 +10,10 @@ const user = {
         getUserId: (state) => state.id,
     },
     actions: {
-        getUser({ commit }) {
-            this.$api.get("api/user").then((response) => {
-                commit("setUserid", response.data);
-            });
+        async getUser({ commit }) {
+            let response = await this.$api.get("api/user")
+            commit("setUserid", response.data);
+            return true
         },
     },
 };

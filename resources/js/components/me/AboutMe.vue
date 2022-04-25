@@ -45,9 +45,9 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("user/getUser");
   },
-  mounted() {
+ async mounted() {
+    await this.$store.dispatch("user/getUser");
     this.getInfo();
   },
 
@@ -56,15 +56,10 @@ export default {
       return key !== 'photo'
     },
     getInfo() {
-      setTimeout(
-        () =>
-          {let userId = this.$store.getters["user/getUserId"];
+      let userId = this.$store.getters["user/getUserId"];
           this.$api
             .get(`/api/user/info/${userId}`)
             .then((response) => (this.infos = response.data.user))
-            },
-        1000
-      );
     },
 
     editInfo() {
