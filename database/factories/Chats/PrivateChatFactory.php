@@ -15,8 +15,7 @@ class PrivateChatFactory extends Factory
     public function definition()
     {
         return [
-            "user_one"=>$this->faker->numberBetween(1,4),
-            "user_two"=>$this->faker->unique()->numberBetween(1,11)
+            "name"=>"chat".$this->faker->name,
         ];
     }
     public function modelName(){
