@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\UserInfo;
+use App\Models\Chats\EntityChat;
+use App\Models\Chats\PrivateChat;
 use App\Models\Dialog\Message;
 use App\Models\Chats\GlobalChat;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -68,13 +68,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(GlobalChat::class);
     }
+
     /**
-     * Список всех пользователей, с которыми User состоит в приватных чатах
+     * Список всех глобальных чатов, в которых состоит пользователь
      */
-    public function privateChatsUsers() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function privateChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(User::class,"private_chats","user_one","user_two");
+        return $this->belongsToMany(PrivateChat::class,'global_chat_user',
+            'user_id', 'global_chat_id','id','id');
     }
+    /*
+    * Все чаты пользователя
+    */
+    public function allChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(EntityChat::class, 'global_chat_user',
+            'user_id', 'global_chat_id','id','id');
+    }
+
     /**
      * Подробная информация о пользователе
      */

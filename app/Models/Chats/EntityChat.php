@@ -10,11 +10,13 @@ class EntityChat extends Model
 {
     use HasFactory;
 
+    protected $table='global_chats';
+
     /**
      * Получение сообщений из текущего чата
      */
-    public function messages() : \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function messages() : \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->morphMany(Message::class,"chat");
+        return $this->hasMany(Message::class,"chat_id");
     }
 }

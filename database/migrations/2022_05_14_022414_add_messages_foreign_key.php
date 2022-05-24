@@ -14,7 +14,9 @@ class AddMessagesForeignKey extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->foreignId("user_id")->references('id')->on("users")->onDelete('cascade');
+            $table->dropColumn('chat_type');
+            $table->unsignedBigInteger('user_id')->change();
+            $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
         });
     }
 
@@ -26,7 +28,11 @@ class AddMessagesForeignKey extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+            $table->dropForeign('messages_user_id_foreign');
+        });
+        Schema::table('messages', function (Blueprint $table) {
+            $table->text('chat_type')->after('chat_id');
+            $table->unsignedInteger('user_id')->change();
         });
     }
 }
