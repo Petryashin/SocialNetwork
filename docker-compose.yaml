@@ -18,7 +18,7 @@ services:
     restart: always
     environment:
       PMA_ARBITRARY: 0
-      PMA_HOST: mysql 
+      PMA_HOST: mysql
       PMA_USER: user
       PMA_PASSWORD: 1234
     ports:
@@ -43,9 +43,22 @@ services:
     restart: always
     build:
       context: ./websocket-server
-      dockerfile: dockerfile.echo      
+      dockerfile: dockerfile.echo
     # network_mode: "host"
     ports:
         - 6001:6001
     volumes:
     - ./websocket-server:/app
+  elastic:
+    image: opensearchproject/opensearch:latest
+    container_name: elastic
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+    ports:
+      - 9200:9200
+    volumes:
+      - ../opensearchdate:/usr/share/elasticsearch/data
+
+
