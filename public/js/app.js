@@ -5350,6 +5350,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _dialog_DialogMainComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dialog/DialogMainComponent.vue */ "./resources/js/components/dialog/DialogMainComponent.vue");
 //
 //
 //
@@ -5360,9 +5361,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.$store.dispatch("user/getUser");
+  },
+  components: {
+    DialogMainComponent: _dialog_DialogMainComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 

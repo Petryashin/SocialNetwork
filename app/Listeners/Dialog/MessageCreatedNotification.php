@@ -29,7 +29,7 @@ class MessageCreatedNotification implements ShouldQueue
     public function handle(MessageCreated $event)
     {
         /** @var Message $message */
-        $message = Message::create($event->message);
-        Log::debug($event->message);
+        Message::create($event->message);
+
     }
 }
