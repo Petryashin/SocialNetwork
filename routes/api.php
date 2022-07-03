@@ -2,11 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Chat\ChatsController;
+use App\Http\Controllers\Chats\ChatsController;
 use App\Http\Controllers\Tests\TestController;
-use App\Http\Controllers\Dialog\UserController;
+use App\Http\Controllers\Chat\UserController;
 use App\Http\Controllers\Store\ImageController;
-use App\Http\Controllers\Dialog\MessageController;
+use App\Http\Controllers\Chat\MessageController;
 
 /*
 |--------------------------------------------------------------------------
