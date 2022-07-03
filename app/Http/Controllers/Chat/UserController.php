@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dialog;
+namespace App\Http\Controllers\Chat;
 
 use App\Http\Resources\UserResource;
 use App\Models\User;

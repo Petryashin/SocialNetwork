@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Dialog;
+namespace App\Http\Controllers\Chat;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Chat\CreateMessageRequest;
 use App\Models\Dialog\Message;
-use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Events\Dialog\MessageCreated;
@@ -27,9 +26,9 @@ class MessageController extends Controller
         return $messages->reverse()->values();
     }
 
-    public function put(Request $request, int $chat_id)
+    public function put(CreateMessageRequest $request, int $chat_id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         if (Auth::user()->id !== $data["user_id"]) return abort(300);
         event(new MessageCreated($data));
         MessageCreatedBroadcasting::dispatch($data);
