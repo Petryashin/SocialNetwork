@@ -16,11 +16,11 @@ export default {
       this.$api.get(`/api/dialog/user/${data.message.user_id}`).then(
         (res)=>{
           let message = data.message
-          message.user = res.data
+          message.user = res.data.user
           this.$store.commit("messages/setNewMessage", message);
         }
       )
-      
+
     });
   },
 };

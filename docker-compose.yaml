@@ -7,7 +7,7 @@ services:
       - 3306:3306
     platform: linux/x86_64
     volumes:
-      - ./../volume:/var/lib/mysql
+      - mysql-social-network:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: database
@@ -18,7 +18,7 @@ services:
     restart: always
     environment:
       PMA_ARBITRARY: 0
-      PMA_HOST: mysql 
+      PMA_HOST: mysql
       PMA_USER: user
       PMA_PASSWORD: 1234
     ports:
@@ -32,7 +32,7 @@ services:
      - "6379:6379"
 
     volumes:
-     - ../redis-data:/var/lib/redis
+     - redis-social-network:/var/lib/redis
       # - ../redis.conf:/usr/local/etc/redis/redis.conf
 
     environment:
@@ -43,9 +43,12 @@ services:
     restart: always
     build:
       context: ./websocket-server
-      dockerfile: dockerfile.echo      
+      dockerfile: dockerfile.echo
     # network_mode: "host"
     ports:
         - 6001:6001
     volumes:
     - ./websocket-server:/app
+volumes:
+  mysql-social-network:
+  redis-social-network:

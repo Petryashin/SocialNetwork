@@ -31,10 +31,16 @@ Route::group(
     ],
     function () {
         Route::group([
-            'prefix' => "/dialog/messages"
-        ], function ($routes) {
-            Route::get('/{chat_id}', [MessageController::class, "get"])->where('chat_id', '[0-9]+');
-            Route::put('/{chat_id}', [MessageController::class, "put"])->where('chat_id', '[0-9]+');
+            'prefix' => "/dialog"
+        ], function () {
+            Route::get('/user/{user_id}', [UserController::class, "getById"])->where('user_id', '[0-9]+');
+            Route::group([
+                'prefix' => "/messages"
+            ], function ($routes) {
+                Route::get('/{chat_id}', [MessageController::class, "get"])->where('chat_id', '[0-9]+');
+                Route::put('/{chat_id}', [MessageController::class, "put"])->where('chat_id', '[0-9]+');
+            });
+
         });
         Route::group([
             'prefix' => "/user"

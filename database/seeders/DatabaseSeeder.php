@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $num = 10;
-        if (!is_null(User::first())){
-//            User::factory($num)->create();
-//            GlobalChat::factory($num)->create();
-//            PrivateChat::factory($num)->create();
+        if (is_null(User::first())){
+            User::factory($num)->create();
+            GlobalChat::factory($num)->create();
+            PrivateChat::factory($num)->create();
             Message::factory(2000)->create();
 //         Friend::factory($num)->create();
-//            GlobalChatUser::factory($num)->create();
+            GlobalChatUser::factory($num)->create();
 //            UserInfo::factory($num)->create();
         }
 
