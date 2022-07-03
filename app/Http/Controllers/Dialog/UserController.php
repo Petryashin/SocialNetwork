@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dialog;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -52,5 +53,13 @@ class UserController extends Controller
         $infos->update($data);
 
         return response()->json(['success' => true, 'user_info' => new UserInfoResource($infos)]);
+    }
+
+    // Основная информация по юзеру
+    public function getById(int $user_id){
+        return response()->json([
+            'success'=>true,
+            'user' => new UserResource(User::find($user_id))
+            ]);
     }
 }

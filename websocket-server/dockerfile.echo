@@ -1,5 +1,5 @@
 FROM node:lts-alpine
-WORKDIR /app
+WORKDIR /echoserver
 COPY package.json laravel-echo-server.json ./
 RUN npm install
 CMD ["npx","laravel-echo-server", "start", "--force"]
