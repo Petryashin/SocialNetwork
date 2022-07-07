@@ -15,6 +15,6 @@ class ChatsController extends Controller
         // TODO: отрефакторить
         $user = Auth::user();
         // return [...$user->globalChats,...$user->privateChats];
-        return $user->allChats();
+        return $user->allChats;
     }
 }
