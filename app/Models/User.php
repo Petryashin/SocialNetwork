@@ -70,7 +70,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Список всех глобальных чатов, в которых состоит пользователь
+     * Список всех личных чатов, в которых состоит пользователь
      */
     public function privateChats() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {

@@ -23,7 +23,7 @@ class MessageCreatedNotification implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  MessageCreated  $event
      * @return void
      */
     public function handle(MessageCreated $event)
