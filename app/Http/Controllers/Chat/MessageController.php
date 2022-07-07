@@ -20,7 +20,6 @@ class MessageController extends Controller
      */
     public function get(int $chat_id): \Illuminate\Http\JsonResponse
     {
-        /**  @var \Illuminate\Database\Eloquent\Collection $messages */
         $messages = Message::with('user:id,name')
             ->has('user')
             ->where("chat_id", $chat_id)
@@ -32,7 +31,8 @@ class MessageController extends Controller
                 'success' => true,
                 'data' => MessagesResource::collection($messages->reverse()),
                 'last_page' => $messages->lastPage(),
-                'current_page' => $messages->currentPage()
+                'current_page' => $messages->currentPage(),
+                'next_page_url' => $messages->nextPageUrl()
             ]);
     }
 
