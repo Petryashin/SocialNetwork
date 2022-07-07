@@ -24,7 +24,7 @@ class MessageController extends Controller
             ->has('user')
             ->where("chat_id", $chat_id)
             ->orderBy('created_at', "DESC")
-            ->paginate(20, '*', 'page_paginate');
+            ->paginate(20, ['*'], 'page_paginate');
 
         return response()
             ->json([
