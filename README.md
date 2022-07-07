@@ -18,4 +18,8 @@ php artisan serve
 - .env.example -> .env 
 -```bash
 php artisan key:generate    
+
+## Запуск PHPStan
+```
+make analyse
 ```
