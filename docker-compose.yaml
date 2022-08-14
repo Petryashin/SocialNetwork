@@ -6,8 +6,10 @@ services:
     ports:
       - 3306:3306
     platform: linux/x86_64
+    command: --init-file /data/application/init.sql
     volumes:
       - mysql-social-network:/var/lib/mysql
+      - ./docker/scripts/create-testing-database.sql:/data/application/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: database
