@@ -20,12 +20,15 @@ export default {
   methods: {
     sendMessage() {
       if (!this.textMessage) return;
+
       let userId = this.$store.getters["user/getUserId"];
+
       this.$store.dispatch("messages/sendMessage", {
         text: this.textMessage,
         user_id: userId,
         chat_id : this.chat_id
       });
+
       this.textMessage = "";
     },
   },

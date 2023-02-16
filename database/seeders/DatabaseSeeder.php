@@ -9,7 +9,7 @@ use App\Models\Dialog\Message;
 use Illuminate\Database\Seeder;
 use App\Models\Chats\GlobalChat;
 use App\Models\Chats\PrivateChat;
-use App\Models\Chats\Helpers\GlobalChatUser;
+use App\Models\Chats\Pivots\GlobalChatUser;
 
 class DatabaseSeeder extends Seeder
 {

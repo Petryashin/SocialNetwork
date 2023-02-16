@@ -3,22 +3,16 @@ import VueRouter from "vue-router";
 import DialogMainComponent from "./../components/dialog/DialogMainComponent"
 import ChatSection from  "./../components/basis/sections/ChatSection"
 import AboutMe from "./../components/me/AboutMe.vue"
-import ImageDownload from "./../components/me/ImageDownload.vue"
- 
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
-    mode: "history", 
+    mode: "history",
     routes: [
         {
             path: "/me",
             component: AboutMe
-            
-        },
-        {
-            path: "/image",
-            component: ImageDownload
-            
+
         },
         {
             path: "/dialog",

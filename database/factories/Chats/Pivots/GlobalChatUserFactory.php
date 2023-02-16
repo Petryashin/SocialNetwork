@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories\Chats\Helpers;
+namespace Database\Factories\Chats\Pivots;
 
-use App\Models\Chats\Helpers\GlobalChatUser;
+use App\Models\Chats\Pivots\GlobalChatUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GlobalChatUserFactory extends Factory

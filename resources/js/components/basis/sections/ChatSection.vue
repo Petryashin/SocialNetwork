@@ -1,11 +1,13 @@
 <template>
   <div  id="root_chats_component">
     <div class="chats_content_splitter">
-      <div @click="chat_id=null" class="content_list_pages_chats">
-        <div  v-for="chat in chats" :key="chat.id" @click.stop="chooseDialog(chat)" class="content_chat_blick">
+
+      <ul @click="chat_id=null" class="content_list_pages_chats">
+          <CreateNewDialog class="content_chat_blick"/>
+          <li  v-for="chat in chats" :key="chat.id" @click.stop="chooseDialog(chat)" class="content_chat_blick">
           {{ chat.name }}
-        </div>
-      </div>
+        </li>
+      </ul>
       <div class="content_this_chat">
           <DialogMainComponent :key="chat_id" v-if="chat_id" :chat_id="chat_id" />
       </div>
@@ -14,6 +16,7 @@
 </template>
 <script>
 import DialogMainComponent from "./../../dialog/DialogMainComponent"
+import CreateNewDialog from "../../dialog/creation/CreateNewDialog.vue";
 export default {
   mounted() {
     this.$store.dispatch("chats/getChatsFrom");
@@ -35,6 +38,7 @@ export default {
       }
   },
   components : {
+      CreateNewDialog,
       DialogMainComponent
   }
 };
@@ -68,6 +72,7 @@ export default {
 }
 .content_chat_blick{
     border-radius: 5px;
+    list-style-type: none;
 }
 .content_chat_blick:hover{
     opacity : 0.8;
