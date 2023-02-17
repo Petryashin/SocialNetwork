@@ -1,7 +1,19 @@
 <template>
-    <li class="create-dialog-window">
-        <textarea placeholder="Find" v-model="fullName" class="create-dialog-area"></textarea>
-    </li>
+    <div>
+        <div class="create-dialog-window">
+            <textarea placeholder="Find" v-model="fullName" class="create-dialog-area"></textarea>
+        </div>
+        <ul>
+            <li v-for="user in availableUsers"
+                :key="user.id"
+                v-if="showAvailable"
+                @click.stop="createNewChat(user)"
+                class="proposed-user">
+                {{ user.name }}
+            </li>
+        </ul>
+
+    </div>
 </template>
 
 <script>
@@ -11,15 +23,24 @@ export default {
         return {
             findText: "",
             availableUsers: {},
-            timerId: null
+            timerId: null,
+            showAvailable: false
         }
     },
-    methods:{
-        getAllowUsers(){
-            this.$store.dispatch("users/getAvailableUsers")
+    methods: {
+        async getAllowUsers(name) {
+            await this.$store.dispatch("users/getAvailableUsers", name)
+            this.availableUsers = this.$store.getters["users/getUsers"]
+            this.showAvailable = true
         },
-        resetTimer(){
+        resetTimer() {
             clearTimeout(this.timerId)
+        },
+        async createNewChat(proposeUser) {
+            this.showAvailable = false
+
+            await this.$store.dispatch("chats/createNewChatWithUser", proposeUser)
+
         }
     },
     computed: {
@@ -33,7 +54,10 @@ export default {
             set(newValue) {
                 this.resetTimer()
 
-                this.timerId = setTimeout(this.getAllowUsers,2000)
+                this.findText = newValue
+                if (this.findText.length > 0) {
+                    this.timerId = setTimeout(() => this.getAllowUsers(newValue), 2000)
+                }
             }
         }
     }
@@ -41,14 +65,25 @@ export default {
 </script>
 
 <style scoped>
-.create-dialog-area{
-    width: 86%;
-    height: 55%;
-    margin: auto;
+.create-dialog-area {
+    width: 89%;
+    height: 51%;
+    margin: 3px 0px;
     border-radius: 15px;
     background-color: #39383dd9;
     opacity: 0.5;
-    padding: 0px 10px;
+    padding: 0px -4px;
     vertical-align: middle;
+    text-align: center;
+}
+
+.proposed-user:hover {
+    opacity: 0.8;
+    color: red;
+}
+
+.proposed-user:hover {
+    opacity: 0.8;
+    color: #0dcaf0;
 }
 </style>

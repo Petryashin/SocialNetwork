@@ -9,5 +9,7 @@ class GlobalChatUser extends Model
 {
     use HasFactory;
 
+    protected $guarded = false;
+
     protected $table = "global_chat_user";
 }

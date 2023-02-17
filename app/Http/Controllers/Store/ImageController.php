@@ -19,9 +19,9 @@ class ImageController extends Controller
     }
     public function setImage(Request $request)
     {
-        Log::debug(print_r($request->file(), true));
+
         $filepath = $request->file('image')->store('images');
-        Log::debug(print_r($request->file('image'), true));
+
         DB::transaction(function () use ($filepath) {
             $userInfo = User::find(1)->info;
             Storage::disk('local')->delete($userInfo->photo);

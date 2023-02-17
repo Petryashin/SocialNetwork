@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Chats\CreateNewChatController;
+use App\Http\Controllers\Chats\GetAvailableUsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Chats\ChatsController;
@@ -23,8 +25,8 @@ use App\Http\Controllers\Chat\MessageController;
 //     return $request->user();
 // });
 //images/vedCciJrsc1TkqySKjJfVhr0JoiN6PSL7xdHNn4n.jpg
-Route::post('test', TestController::class);
-Route::get('test', [ImageController::class, 'get']);
+Route::get('test', TestController::class);
+
 Route::group(
     [
         'middleware' => 'auth'
@@ -57,10 +59,23 @@ Route::group(
             });
         });
 
+
         Route::group([
             'prefix' => "/chats"
         ], function ($routes) {
             Route::get('/', [ChatsController::class, "get"]);
+
+            Route::group([
+                'prefix' => "/privates"
+            ], function ($routes) {
+                Route::post('/create/{user}', [CreateNewChatController::class, "create"]);
+            });
+
+            Route::group([
+                'prefix' => "/users"
+            ], function ($routes) {
+                Route::get('getAvailable/{user}', [GetAvailableUsersController::class, "getAvailable"]);
+            });
         });
     }
 );
