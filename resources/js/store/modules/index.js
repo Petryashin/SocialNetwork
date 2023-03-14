@@ -1,8 +1,10 @@
 import messages from './messages'
 import chats from './chats'
 import user from './user'
-export default {    
+import users from "./users";
+export default {
     messages,
     user,
+    users,
     chats
 }
